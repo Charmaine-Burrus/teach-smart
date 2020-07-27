@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.btn-outline-success {
+  color: blue;
+  border-color: blue;
+}
+
+.header-bottom {
+  margin-bottom: 55px;
+}
+
+/* .container {
+  margin-top: 20%;
+   this allows it to scale easily
+  max-width: 700px;
+} */
+
+.corral {
+  margin: 0 auto;
+  width: 460px;
+  position: relative;
+}
+
+.contentContainerBordered {
+  margin: 120px auto 0;
+  padding: 42px 42px 36px;
+  border: 1px solid #eaeced;
+  overflow: hidden;
+}
+
+.about-us-container {
+  margin-top:200px; 
+  width:680px;
+}
+
+.card {
+  border: 3px solid #516bf0;
+}
+
+.card:hover {
+  background-color: lightblue;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 40vh;
+  object-fit: cover;
+}
+
+a.card,
+a.card:hover {
+  color:inherit;
+}
+
+.padding {
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+}
+
+.center {
+	margin: auto;
+}
