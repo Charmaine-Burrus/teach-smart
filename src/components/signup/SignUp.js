@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import LoginGoogle from './googlelogin/LoginGoogle';
 
 class SignUp extends Component {
 
@@ -39,10 +40,14 @@ class SignUp extends Component {
 
     render() {
         return (
-            <div className="signup container">
-                <div className="corral">
+            <div className="signup">
+                <div className="corral text-center">
                     <div id="content" className="contentContainer activeContent contentContainerBordered">
-                    <h3 className="text-center">Sign up below!</h3>
+                    <h3>Login with Google</h3>
+                    <LoginGoogle/>
+
+                    <h3>OR</h3>
+                    <h3>Sign up here</h3>
                     <form>
                         <div className="form-row mb-1">
                             <div className="col">

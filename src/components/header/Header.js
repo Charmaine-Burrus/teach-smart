@@ -60,12 +60,12 @@ class Header extends Component {
                 {/* type = password will show astriks as you type in */}
                 <input onChange={this.handleChange} value={this.state.password} name="password"className="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password"/>
                 {/* type="button", b/c type="submit" wants to submit a form */}
-                <button onClick={this.handleSubmit} className="btn btn-outline-success my-2 my-sm-0" type="button">Sign In</button>
+                <button onClick={this.handleSubmit} className="btn my-2 my-sm-0" type="button">Sign In</button>
                 </form>
         );
         if(localStorage.getItem("loggedInUser")) {
             signInSignOut = (
-                <button onClick={this.signOut} className="btn btn-outline-success my-2 my-sm-0" type="button">Sign Out</button>
+                <button onClick={this.signOut} className="btn my-2 my-sm-0" type="button">Sign Out</button>
             )
 
             links = (
@@ -77,8 +77,9 @@ class Header extends Component {
 
         return (
             //header is Hiram's suggestion, header-bottom is from Lamar, maybe bootstrap
-            <div className="header header-bottom">
-                <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div className="header">
+                {/* might want to add fixed-top for scrolling */}
+                <nav className="navbar navbar-dark navbar-expand-md">
                     <Link className="navbar-brand" to="/">Dashboard</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>

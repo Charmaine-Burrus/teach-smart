@@ -6,10 +6,13 @@ import Layout from './components/layout/Layout';
 
 function App() {
   return (
-    // this is showing that the Layout.js has all the browser routers we need
-    <BrowserRouter>
-      <Layout />
-    </BrowserRouter>
+    <div className="App">
+      {/* this is showing that the Layout.js has all the browser routers we need */}
+      {/* <img src={assessment} className="card-img-top card-pics" alt="Assessment"/> */}
+      <BrowserRouter>
+        <Layout />
+      </BrowserRouter>
+    </div>
   );
 }
 

@@ -5,6 +5,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  /* background-color: #64b9e3; */
+  background-color: #abddf5;
+  background-image: url('./images/wallpaper.jpg');
+}
+
+html {
+  height: 100%;
 }
 
 code {
@@ -12,31 +22,33 @@ code {
     monospace;
 }
 
-.btn-outline-success {
-  color: blue;
-  border-color: blue;
+.btn {
+  color: white;
+  border-color: white;
 }
 
-.header-bottom {
-  margin-bottom: 55px;
+.btn:hover {
+  background-color: #64b9e3;
 }
 
-/* .container {
-  margin-top: 20%;
-   this allows it to scale easily
-  max-width: 700px;
-} */
+.navbar-dark {
+  background-color: #3372b0;
+}
 
 .corral {
   margin: 0 auto;
   width: 460px;
   position: relative;
+  background-color: #3372b0;
+  border-radius: 15px;
+  color: white;
 }
 
 .contentContainerBordered {
   margin: 120px auto 0;
   padding: 42px 42px 36px;
   border: 1px solid #eaeced;
+  border-radius: 15px;
   overflow: hidden;
 }
 
@@ -46,11 +58,11 @@ code {
 }
 
 .card {
-  border: 3px solid #516bf0;
+  border: 3px solid #3372b0;
 }
 
 .card:hover {
-  background-color: lightblue;
+  background-color: #64b9e3;
 }
 
 .card-img-top {
