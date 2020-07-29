@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import GoogleLogin from 'react-google-login'
-import { Axios } from 'axios';
+import Axios from 'axios';
 
 class LoginGoogle extends Component {
 
@@ -12,13 +12,16 @@ class LoginGoogle extends Component {
     login=(response)=>{
       console.log(response);
       var id_token = response.tokenId;
-      Axios.post('http://localhost:4000/login', id_token)
-      .then(response => {
-          localStorage.setItem("loggedInUser", response.data.email)
+      //TO DO: how do I send the id_token in the header?
+      Axios.post('http://localhost:4000/login', id_token);
+    //   .then(response => {
+    //       localStorage.setItem("loggedInUser", response.data.email);
+    //       localStorage.setItem("profilePic", response.data.pictureUrl);
+    localStorage.setItem("loggedInUser", "cb@yahoo.com");
           this.props.history.push('/home');
-      }).catch( error => {
+    //   }).catch( error => {
           //TODO: display error message to the user... maybe make an error page to redirect to?
-      });
+      //});
     }
 
     render() {

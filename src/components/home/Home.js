@@ -11,7 +11,7 @@ class Home extends Component {
     render() {
         return (
             <div className="home">
-                <div className="container-fluid padding">
+                <div className="container-fluid padding home-container">
                     <div className="row center">
 
                         <a className="col-md-4 center" href="#">

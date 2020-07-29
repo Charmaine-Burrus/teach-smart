@@ -19,15 +19,15 @@ class Header extends Component {
 
         if(localStorage.getItem("loggedInUser")) {
             signInSignOut = (
-                <LogoutGoogle/>
+                <LogoutGoogle {...this.props}/>
             )
 
             links = (
                 //TO DO: this probably won't look right.. i need to figure out how to get rid of div but still have a "parent element" OR do this all w/ separate components instead and pass props
                 <div>
-                    <li className="nav-item active">
+                    {/* <li className="nav-item active">
                         <a className="navbar-brand" href="/"><img src={TeachSmart} className="mini-logo"/></a>
-                    </li>
+                    </li> */}
                     <li className="nav-item active">
                         <Link className="nav-link" to="/about-us">About Us <span className="sr-only">(current)</span></Link>
                     </li>

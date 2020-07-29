@@ -10,7 +10,12 @@ body {
   padding: 0;
   /* background-color: #64b9e3; */
   background-color: #abddf5;
-  background-image: url('./images/wallpaper.jpg');
+  /* background-image: url('./images/wallpaper.jpg'); */
+  background : url('./images/wallpaper.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
 }
 
 html {
@@ -71,9 +76,8 @@ img {
   text-align: right;
 }
 
-.about-us-container {
-  margin-top:200px; 
-  width:680px;
+.home-container {
+  margin: 120px auto 0;; 
 }
 
 .card {

@@ -18,8 +18,8 @@ class Layout extends Component {
             //not logged in we need a container to hold everything in
             <div>
                 {/* component is the thing it will go to... and path is what the browser will so... so if this is the default if the user types nothing in the browser or types sign-up */}
-                <Route component={Signup} path="/" exact/>
-                <Route component={Signup} path="/sign-up" />
+                <Route component={Signup} path="/" exact {...this.props}/>
+                <Route component={Signup} path="/sign-up" {...this.props}/>
                 <Route component={ThankYou} path="/thank-you" />
             </div>
         );
@@ -28,8 +28,8 @@ class Layout extends Component {
             routes = (
                 //logged in
                 <div>
-                    <Route component={Home} path="/home" />
-                    <Route component={Signup} path="/" exact/>
+                    <Route component={Home} path="/home"/>
+                    <Route component={Home} path="/" exact/>
                 </div>
             );
         }
