@@ -22,6 +22,11 @@ code {
     monospace;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 .btn {
   color: white;
   border-color: white;
@@ -52,6 +57,20 @@ code {
   overflow: hidden;
 }
 
+.logo {
+  max-width: 100%;
+  height: auto;
+}
+
+.mini-logo {
+  max-width: 7%;
+  height: auto;
+}
+
+.navbar-right {
+  text-align: right;
+}
+
 .about-us-container {
   margin-top:200px; 
   width:680px;
@@ -77,8 +96,13 @@ a.card:hover {
 }
 
 .padding {
-  padding-bottom: 2rem;
-  padding-top: 2rem;
+  padding-bottom: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+.light-padding {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
 }
 
 .center {
