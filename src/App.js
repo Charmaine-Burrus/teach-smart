@@ -1,5 +1,5 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import Layout from './components/layout/Layout';
