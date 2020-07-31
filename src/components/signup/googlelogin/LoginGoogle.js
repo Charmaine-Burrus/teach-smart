@@ -22,7 +22,6 @@ class LoginGoogle extends Component {
           localStorage.setItem("profilePic", response.data.pictureUrl);
           localStorage.setItem("firstName", response.data.firstName);
           localStorage.setItem("lastName", response.data.lastName);
-          localStorage.setItem("authToken", response.data.googleTokenId);
         //   localStorage.setItem("loggedInUser", JSON.stringify(response.data));
           this.props.history.push('/home');
         }).catch( error => {
@@ -41,6 +40,7 @@ class LoginGoogle extends Component {
                     onFailure={this.responseGoogle}
                     cookiePolicy={'single_host_origin'}
                     scope={this.SCOPES}
+                    // scope='https://www.googleapis.com/auth/classroom.courses.readonly'
                 />
             </div>
         );

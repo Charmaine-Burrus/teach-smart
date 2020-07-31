@@ -23,12 +23,9 @@ class Home extends Component {
     }
 
     listCourses=(e)=>{
-        const params = {
-            authToken: localStorage.getItem('authToken')
-        }
         e.preventDefault();
         console.log("test check")
-        Axios.get('http://localhost:4000/listCourses', {params})
+        Axios.get('http://localhost:4000/listCourses')
         .then(response => {
             console.log(response.data);
             this.togglePopup();
