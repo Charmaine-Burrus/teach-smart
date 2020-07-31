@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LoginGoogle from './googlelogin/LoginGoogle';
-import TeachSmartText from './TeachSmartText.PNG'
+import TeachSmartText from '../../images/TeachSmartText.PNG';
 
 class SignUp extends Component {
 
