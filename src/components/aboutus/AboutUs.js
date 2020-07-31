@@ -16,7 +16,7 @@ const AboutUs = () => {
             <p className="lead">Design tools that empower teachers to work as smart as possible, propelling their students to success!</p>
             
             <h2 className="cover-heading padding">-Our Model-</h2>
-            <p className="lead">You already work hard. We give you the tools to work smart!</p>
+            <p className="lead">You already work hard. We give you the tools to work smart.</p>
             <h5 >Data-informed instruction has never been easier!</h5>
             
             <div className="row padding">

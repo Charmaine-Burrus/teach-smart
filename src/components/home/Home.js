@@ -1,41 +1,82 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
-import growth from './growth.jpg';
-import assessment from './assessment.jpg';
+import growth from '../../images/growth.jpg';
+import assessment from '../../images/assessment.jpg';
+import graph3 from '../../images/graph3.jpg';
 import Axios from 'axios';
+import AddPopup from './addpopup/AddPopup';
+import style from '../../index.css';
 
 class Home extends Component {
 
-    //might be able to make this a dumb component instead...
+    constructor() {
+        super();
+        this.state = {
+          showPopup: false
+        };
+      }
+
+    togglePopup=() => {
+      this.setState({
+        showPopup: !this.state.showPopup
+      });
+    }
+
+    listCourses=(e)=>{
+        e.preventDefault();
+        console.log("test check")
+        Axios.get('http://localhost:4000/listCourses')
+        .then(response => {
+            console.log(response.data);
+            this.togglePopup();
+        }).catch( error => {
+            console.log(error);
+        });
+      }
+
+      navigateToAnalysis=()=>{
+        this.props.history.push('/analysis')
+      }
 
     render() {
         return (
             <div className="home">
                 <div className="container-fluid padding home-container">
                     <div className="row center">
-
-                        <a className="col-md-4 center" href="#">
+                        <div className="col-md-3 center"></div>
+                    
+                        <a className="col-md-3 center" href="#" onClick={(e) => this.listCourses(e)}>
                             <div className="card">
                                 <img src={assessment} className="card-img-top card-pics" alt="Assessment"/>
                                 <div className="card-body">
                                     <h5 className="card-title">Add Assessment</h5>
-                                    <p className="card-text">Import an assessment from Google Forms.</p>
+                                    <p className="card-text">Import from Google Forms.</p>
                                 </div>
                             </div>
                         </a>
-
-                        <a className="col-md-4 center" href="#">
+                        
+                        <a className="col-md-3 center" href="#" onClick={this.navigateToAnalysis}>
                             <div className="card">
-                                <img src={growth} className="card-img-top card-pics" alt="Growth"/>
+                                <img src={graph3} className="card-img-top card-pics" alt="Growth"/>
                                 <div className="card-body">
                                     <h5 className="card-title">Analyze Assessment</h5>
                                     <p className="card-text">View assessment data analysis.</p>
                                 </div>
                             </div>
-                        </a>    
+                        </a>  
+
+                        <div className="col-md-3 center"></div>  
 
                     </div>
                 </div>
+                {this.state.showPopup ? 
+                    <AddPopup
+                        text='Close Me'
+                        closePopup={this.togglePopup.bind(this)}
+                        {...this.props}
+                    />
+                    : null
+                }
             </div>
         );
     }
