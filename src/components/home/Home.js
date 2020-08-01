@@ -6,20 +6,23 @@ import graph3 from '../../images/graph3.jpg';
 import Axios from 'axios';
 import AddPopup from './addpopup/AddPopup';
 import style from '../../index.css';
+import {Button, Form, Modal} from 'react-bootstrap';
 
 class Home extends Component {
 
     constructor() {
-        super();
+        super()
         this.state = {
-          showPopup: false
-        };
-      }
+            show: false
+        }
+    }
 
-    togglePopup=() => {
-      this.setState({
-        showPopup: !this.state.showPopup
-      });
+    handleModal() {
+        this.setState({show: !this.state.show})
+    }
+
+    navigateToAnalysis() {
+        this.props.history.push('/analysis')
     }
 
     listCourses=(e)=>{
@@ -31,15 +34,23 @@ class Home extends Component {
         Axios.post('http://localhost:4000/listCourses', { googleTokenId: localStorage.getItem('accessToken')} )
         .then(response => {
             console.log(response.data);
-            this.togglePopup();
+            //this is where i should set state using the response
+            this.handleModal();
         }).catch( error => {
             console.log(error);
         });
       }
 
-      navigateToAnalysis=()=>{
-        this.props.history.push('/analysis')
-      }
+    addAssignmentResults=(e)=>{
+        e.preventDefault();
+        Axios.post('http://localhost:4000/addAssignmentResults')
+        .then(response => {
+          console.log(response.data);
+          this.props.history.push('/analysis');
+        }).catch( error => {
+          console.log(error);
+        });
+    }
 
     render() {
         return (
@@ -58,7 +69,7 @@ class Home extends Component {
                             </div>
                         </a>
                         
-                        <a className="col-md-3 center" href="#" onClick={this.navigateToAnalysis}>
+                        <a className="col-md-3 center" href="#" onClick={()=>{this.navigateToAnalysis()}}>
                             <div className="card">
                                 <img src={graph3} className="card-img-top card-pics" alt="Growth"/>
                                 <div className="card-body">
@@ -72,14 +83,41 @@ class Home extends Component {
 
                     </div>
                 </div>
-                {this.state.showPopup ? 
-                    <AddPopup
-                        text='Close Me'
-                        closePopup={this.togglePopup.bind(this)}
-                        {...this.props}
-                    />
-                    : null
-                }
+                <Modal
+                    show={this.state.show}
+                    onHide={()=>{this.handleModal()}}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>Add an Assessment</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <div>
+                                Select a Course
+                                {/* this actually doesn't need to be sent to the backend in a form */}
+                                <select className="form-control" onChange={this.getAssignments} name="course" id="course">
+                                    {/* I need to list these dynamically from what /listCourses returned */}
+                                    <option value="John White">Example Course</option>
+                                </select>
+                            </div>
+                            <div>  
+                                <select className="form-control" onChange={this.getAssignments} name="course" id="course">
+                                    {/* now i list what i get back from /list assignments */}
+                                    <option value="John White">Example Course</option>
+                                </select>
+                            </div>  
+                            
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={()=>{this.handleModal()}}>
+                            Cancel
+                        </Button>
+                        <Button variant="primary" onClick={(e) => this.addAssignmentResults(e)}> Add</Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         );
     }
