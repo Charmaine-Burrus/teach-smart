@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import LogoutGoogle from './googlelogout/LogoutGoogle';
 import TeachSmart from '../../images/TeachSmart.jpg';
+import LoginGoogle from '../signup/googlelogin/LoginGoogle';
 
 class Header extends Component {
 

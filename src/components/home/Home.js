@@ -14,17 +14,15 @@ class Home extends Component {
         this.state = {
             show: false,
             courses: [],
-            assessments: []
+            course: '',
+            assignments: [],
+            // this should be an object, so is this okay?
+            assignment: ''
         }
     }
 
     handleModal() {
         this.setState({show: !this.state.show})
-    }
-
-    listAssignments = (event) => {
-        //now need to write something similar to .listCourses but .listAssignments and send this value to backend  (remember only those with a sheet)
-        console.log(event.target.value);
     }
 
     navigateToAnalysis() {
@@ -36,7 +34,7 @@ class Home extends Component {
             googleTokenId: localStorage.getItem('accessToken')
         };
         e.preventDefault();
-        console.log("test check.. params are" + authToken);
+        console.log("test check.. params are", authToken);
         Axios.post('http://localhost:4000/listCourses', { googleTokenId: localStorage.getItem('accessToken')} )
         .then(response => {
             console.log(response.data);
@@ -48,11 +46,59 @@ class Home extends Component {
         });
       }
 
+      listAssignments = (event) => {
+        this.setState({assignments: []})
+        console.log(event.target.value);
+        this.setState({course: event.target.value})
+        const tSClass = {
+            accessToken: localStorage.getItem('accessToken'),
+            classId: event.target.value
+        };
+        Axios.post('http://localhost:4000/listAssignmentsWithSheet', tSClass)
+        .then(response => {
+            console.log("ASsignments ::> ", response.data);
+            if(response.data != undefined && response.data.length > 0){
+                const assignments = response.data
+                    .filter( assigment => {
+                        if(assigment.materials != undefined && assigment.materials.length > 0){
+                            return assigment.materials
+                                .filter( material => {
+                                    return material != undefined && material.form != undefined && material.form.responseUrl != undefined
+                                }).length > 0
+                        }
+                        return false;
+                    })
+                console.log("Filtered assignments ::> ", assignments)
+                //I've received an array of assignments
+                this.setState({assignments: assignments})
+            }else{
+                // this.setState({assignments: []})
+            }
+        }).catch( error => {
+            console.log(error);
+        });
+    }
+
+    //not sure how to write this... I want to update state.assignment to assignments(index)... I've saved that as the value of the option
+    setAssignmentResults = (event) => {
+        this.setState({
+            assignment : this.state.assignments[event.target.value]
+        })
+        console.log(this.state.assignment);
+    }
+
+    //not sure about this one either... trying to send the assignment that I set above
     addAssignmentResults=(e)=>{
         e.preventDefault();
-        Axios.post('http://localhost:4000/addAssignmentResults')
+        const tSAssignment = {
+            accessToken: localStorage.getItem('accessToken'),
+            assignmentName: this.state.assignment.title,
+            responseUrl: this.state.assignment.materials[0].form.responseUrl
+            //could add back other info here potentially...
+        };
+        Axios.post('http://localhost:4000/addAssignmentResults', tSAssignment)
         .then(response => {
-          console.log(response.data);
+            //do i need to close the modal here?
           this.props.history.push('/analysis');
         }).catch( error => {
           console.log(error);
@@ -106,8 +152,8 @@ class Home extends Component {
                             <div className="padding">
                                 Step 1: Select a Course
                                 {/* this actually doesn't need to be sent to the backend in a form */}
-                                <select className="form-control" onChange={this.listAssignments} name="course" id="course">
-                                    {/* I need to list these dynamically from what /listCourses returned */}
+                                <select className="form-control" value={this.state.course} onChange={this.listAssignments}>
+                                    <option value="" disabled>Please Select a value</option>
                                     {this.state.courses.map((course, index) =>
                                     <option value={course.id}>{course.name}</option>
                                     )}
@@ -115,11 +161,12 @@ class Home extends Component {
                             </div>
                             <div className="padding"> 
                                 Step 2: Choose an Assignment
-                                <select className="form-control" onChange={this.setAssignmentResults} name="assignment" id="assignment">
-                                    {/* now i list what i get back from /list assignments */}
-                                    <option value="John White">Example Assignment 1</option>
-                                    <option value="John White">Example Assignment 2</option>
-                                    <option value="John White">Example Assignment 3</option>
+                                {/* I  might not want to bind the value here... not sure */}
+                                <select className="form-control" value={this.state.assignment} onChange={this.setAssignmentResults}>
+                                    <option value="" disabled>Please Select an Assignment</option>
+                                    {this.state.assignments.map((assignment, index) =>
+                                    <option value={index}>{assignment.title}</option>
+                                    )}
                                 </select>
                             </div>  
                             
