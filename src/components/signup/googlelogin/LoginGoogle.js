@@ -7,15 +7,19 @@ class LoginGoogle extends Component {
     SCOPES = 'profile email https://www.googleapis.com/auth/classroom.courses.readonly https://www.googleapis.com/auth/spreadsheets.readonly https://www.googleapis.com/auth/classroom.student-submissions.students.readonly'
 
     responseGoogle=(response)=>{
-        console.log(response);
+        console.log("Failed ::> ",response);
     }
 
     login=(response)=>{
-      console.log(response);
+      console.log("SUCCESS ::> ",response);
       var id_token = response.tokenId;
+      const accessToken = response.wc.access_token;
+      localStorage.setItem("accessToken", accessToken);
       console.log(id_token)
       //TO DO: how do I send the id_token in the header?
-      Axios.post('http://localhost:4000/login', {tokenId: id_token})
+      const data = {googleTokenId: id_token};
+      console.log(data);
+      Axios.post('http://localhost:4000/login', data)
       .then(response => {
           console.log(response.data);
           localStorage.setItem("loggedInUser", response.data.email);
@@ -23,7 +27,6 @@ class LoginGoogle extends Component {
           localStorage.setItem("firstName", response.data.firstName);
           localStorage.setItem("lastName", response.data.lastName);
           localStorage.setItem("authToken", response.data.googleTokenId);
-        //   localStorage.setItem("loggedInUser", JSON.stringify(response.data));
           this.props.history.push('/home');
         }).catch( error => {
         console.log(error);
@@ -37,8 +40,11 @@ class LoginGoogle extends Component {
                     clientId="859167518630-2vfc35jchg1lndfmto5jolrvtsvf1kae.apps.googleusercontent.com"
                     buttonText="Continue with Google"
                     onSuccess={this.login}
-                    isSignedIn={true}
+                    isSignedIn={false}
                     onFailure={this.responseGoogle}
+                    prompt='consent'
+                    // responseType='id_token token permission'
+                    approvalPrompt="force"
                     cookiePolicy={'single_host_origin'}
                     scope={this.SCOPES}
                 />

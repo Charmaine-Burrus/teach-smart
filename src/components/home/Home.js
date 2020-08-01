@@ -23,12 +23,12 @@ class Home extends Component {
     }
 
     listCourses=(e)=>{
-        const params = {
-            authToken: localStorage.getItem('authToken')
-        }
+        const authToken = {
+            googleTokenId: localStorage.getItem('accessToken')
+        };
         e.preventDefault();
-        console.log("test check")
-        Axios.get('http://localhost:4000/listCourses', {params})
+        console.log("test check.. params are" + authToken);
+        Axios.post('http://localhost:4000/listCourses', { googleTokenId: localStorage.getItem('accessToken')} )
         .then(response => {
             console.log(response.data);
             this.togglePopup();
