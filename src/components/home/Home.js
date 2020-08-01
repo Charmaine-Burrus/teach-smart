@@ -4,8 +4,7 @@ import growth from '../../images/growth.jpg';
 import assessment from '../../images/assessment.jpg';
 import graph3 from '../../images/graph3.jpg';
 import Axios from 'axios';
-import AddPopup from './addpopup/AddPopup';
-import style from '../../index.css';
+import style from './home.css'
 import {Button, Form, Modal} from 'react-bootstrap';
 
 class Home extends Component {
@@ -13,12 +12,19 @@ class Home extends Component {
     constructor() {
         super()
         this.state = {
-            show: false
+            show: false,
+            courses: [],
+            assessments: []
         }
     }
 
     handleModal() {
         this.setState({show: !this.state.show})
+    }
+
+    listAssignments = (event) => {
+        //now need to write something similar to .listCourses but .listAssignments and send this value to backend  (remember only those with a sheet)
+        console.log(event.target.value);
     }
 
     navigateToAnalysis() {
@@ -34,7 +40,8 @@ class Home extends Component {
         Axios.post('http://localhost:4000/listCourses', { googleTokenId: localStorage.getItem('accessToken')} )
         .then(response => {
             console.log(response.data);
-            //this is where i should set state using the response
+            //I've received an array of courses
+            this.setState({courses: response.data})
             this.handleModal();
         }).catch( error => {
             console.log(error);
@@ -88,24 +95,31 @@ class Home extends Component {
                     onHide={()=>{this.handleModal()}}
                     backdrop="static"
                     keyboard={false}
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Add an Assessment</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
-                            <div>
-                                Select a Course
+                            <div className="padding">
+                                Step 1: Select a Course
                                 {/* this actually doesn't need to be sent to the backend in a form */}
-                                <select className="form-control" onChange={this.getAssignments} name="course" id="course">
+                                <select className="form-control" onChange={this.listAssignments} name="course" id="course">
                                     {/* I need to list these dynamically from what /listCourses returned */}
-                                    <option value="John White">Example Course</option>
+                                    {this.state.courses.map((course, index) =>
+                                    <option value={course.id}>{course.name}</option>
+                                    )}
                                 </select>
                             </div>
-                            <div>  
-                                <select className="form-control" onChange={this.getAssignments} name="course" id="course">
+                            <div className="padding"> 
+                                Step 2: Choose an Assignment
+                                <select className="form-control" onChange={this.setAssignmentResults} name="assignment" id="assignment">
                                     {/* now i list what i get back from /list assignments */}
-                                    <option value="John White">Example Course</option>
+                                    <option value="John White">Example Assignment 1</option>
+                                    <option value="John White">Example Assignment 2</option>
+                                    <option value="John White">Example Assignment 3</option>
                                 </select>
                             </div>  
                             
