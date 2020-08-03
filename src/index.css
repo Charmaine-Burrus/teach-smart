@@ -126,3 +126,10 @@ a.card:hover {
 .center {
 	margin: auto;
 }
+
+.bar-graph {
+  position: relative;
+  width: 50%;
+  height: auto;
+  background-color: black;
+}

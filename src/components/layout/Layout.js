@@ -40,6 +40,8 @@ class Layout extends Component {
                 {/* component is the thing it will go to... and path is what the browser will so... so if this is the default if the user types nothing in the browser or types sign-up */}
                 {routes}
                 <Route component={AboutUs} path="/about-us" />
+                {/* TODO: need to remove this */}
+                <Route component={Analysis} path="/analysis" exact {...this.props}/>
             </div>
         );
     }
