@@ -65,7 +65,7 @@ class Home extends Component {
             accessToken: localStorage.getItem('accessToken'),
             classId: event.target.value
         };
-        Axios.post('http://localhost:4000/listAssignmentsWithSheet', tSClass)
+        Axios.post('http://localhost:4000/listAssignments', tSClass)
         .then(response => {
             console.log("ASsignments ::> ", response.data);
             if(response.data != undefined && response.data.length > 0){
@@ -130,6 +130,7 @@ class Home extends Component {
             //could add back other info here potentially...
         };
         console.log(tSAssignment);
+        // WILL NEED TO SEND LOGGED IN USER AS WELL
         /* Axios.post('http://localhost:4000/addAssignmentResults', tSAssignment)
         .then(response => {
             //do i need to close the modal here?
