@@ -14,7 +14,7 @@ body {
   background : url('./images/wallpaper.jpg');
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: scroll;
+  background-attachment: fixed;
   background-size: cover;
 }
 

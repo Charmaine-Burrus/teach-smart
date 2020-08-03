@@ -16,13 +16,19 @@ class Home extends Component {
             courses: [],
             course: '',
             assignments: [],
-            // this should be an object, so is this okay?
-            assignment: ''
+            assignment: '',
+            assignmentUrl: '',
+            showModal2: false,
+            selectedFile: null
         }
     }
 
     handleModal() {
         this.setState({show: !this.state.show})
+    }
+
+    handleModal2() {
+        this.setState({showModal2: !this.state.showModal2})
     }
 
     navigateToAnalysis() {
@@ -81,11 +87,21 @@ class Home extends Component {
 
     //not sure how to write this... I want to update state.assignment to assignments(index)... I've saved that as the value of the option
     setAssignmentResults = (event) => {
-        this.setState({
+        console.log(event.target.value);
+        this.setState({assignmentUrl: event.target.value})
+/*         this.setState({
             assignment : this.state.assignments[event.target.value]
-        })
-        console.log(this.state.assignment);
+        }) */
+        // TODO: If this doesn't work, I could just make a bunch of fields in state that correspond to the ones in addAssignment below and set them all here
+       /*  this.setState({
+            assignmentUrl : this.state.assignment.materials[0].form.responseUrl
+        }) */
+        this.handleModal2();
     }
+
+    onFileChange = event => {  
+        this.setState({ selectedFile: event.target.files[0] });     
+    }; 
 
     //not sure about this one either... trying to send the assignment that I set above
     addAssignmentResults=(e)=>{
@@ -93,9 +109,12 @@ class Home extends Component {
         const tSAssignment = {
             accessToken: localStorage.getItem('accessToken'),
             assignmentName: this.state.assignment.title,
-            responseUrl: this.state.assignment.materials[0].form.responseUrl
+            responseUrl: this.state.assignment.materials[0].form.responseUrl,
+            formPictureUrl: this.state.assignment.materials[0].form.thumbnailUrl,
+            csv: this.state.selectedFile
             //could add back other info here potentially...
         };
+        console.log(tSAssignment);
         Axios.post('http://localhost:4000/addAssignmentResults', tSAssignment)
         .then(response => {
             //do i need to close the modal here?
@@ -155,7 +174,7 @@ class Home extends Component {
                                 <select className="form-control" value={this.state.course} onChange={this.listAssignments}>
                                     <option value="" disabled>Please Select a value</option>
                                     {this.state.courses.map((course, index) =>
-                                    <option value={course.id}>{course.name}</option>
+                                    <option key={index} value={course.id}>{course.name}</option>
                                     )}
                                 </select>
                             </div>
@@ -165,10 +184,15 @@ class Home extends Component {
                                 <select className="form-control" value={this.state.assignment} onChange={this.setAssignmentResults}>
                                     <option value="" disabled>Please Select an Assignment</option>
                                     {this.state.assignments.map((assignment, index) =>
-                                    <option value={index}>{assignment.title}</option>
+                                    // TODO: need to figure out how to do it with index... before i had value=index... idk, look into that
+                                    <option key={index} value={assignment.materials[0].form.responseUrl}>{assignment.title}</option>
                                     )}
                                 </select>
                             </div>  
+                            <div className="padding">
+                                Step 4: Upload the File Downloaded During Step 3
+                                <input type="file" onChange={this.onFileChange} /> 
+                            </div>
                             
                         </Form>
                     </Modal.Body>
@@ -177,6 +201,31 @@ class Home extends Component {
                             Cancel
                         </Button>
                         <Button variant="primary" onClick={(e) => this.addAssignmentResults(e)}> Add</Button>
+                    </Modal.Footer>
+                </Modal>
+                <Modal
+                    className={"modal"}
+                    show={this.state.showModal2}
+                    onHide={()=>{this.handleModal2()}}
+                    backdrop="static"
+                    keyboard={false}
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>Step 3: Access the Google Sheet</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <p>Your sheet is located here:</p>
+                        <p>{this.state.assignmentUrl}</p>
+                        <p>Copy the link and paste it into a new tab -- this will open the sheet.</p>
+                        <p>Go to File -> Download -> Tab-separated values.</p>
+                        <p>Now close this box and proceed to Step 4.</p>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={()=>{this.handleModal2()}}>
+                            Close
+                        </Button>
                     </Modal.Footer>
                 </Modal>
             </div>
