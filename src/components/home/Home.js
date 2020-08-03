@@ -16,10 +16,15 @@ class Home extends Component {
             courses: [],
             course: '',
             assignments: [],
-            assignment: '',
-            assignmentUrl: '',
+            assignment : {
+                accessToken: '',
+                responseUrl: '',
+                //TODO: choose to have either this or the selected file field below
+                csv: ''
+            },
             showModal2: false,
-            selectedFile: null
+            selectedFile: null,
+            assignmentName: ''
         }
     }
 
@@ -87,15 +92,20 @@ class Home extends Component {
 
     //not sure how to write this... I want to update state.assignment to assignments(index)... I've saved that as the value of the option
     setAssignmentResults = (event) => {
-        console.log(event.target.value);
-        this.setState({assignmentUrl: event.target.value})
-/*         this.setState({
-            assignment : this.state.assignments[event.target.value]
-        }) */
-        // TODO: If this doesn't work, I could just make a bunch of fields in state that correspond to the ones in addAssignment below and set them all here
-       /*  this.setState({
-            assignmentUrl : this.state.assignment.materials[0].form.responseUrl
-        }) */
+        const tempAssignment = {...this.state.assignment};
+        tempAssignment["accessToken"] = localStorage.getItem('accessToken');
+        tempAssignment["responseUrl"] = event.target.value;
+        console.log(tempAssignment);
+        this.setState(
+            {
+                assignment : tempAssignment
+            }
+        );
+        /* Still not positive if it's being set above... if not, could use this
+        this.state.assignment["accessToken"] = localStorage.getItem('accessToken');
+        this.state.assignment["assignmentName"] = event.target.name;
+        this.state.assignment["responseUrl"] = event.target.value;
+        console.log(this.state.assignment); */
         this.handleModal2();
     }
 
@@ -103,25 +113,30 @@ class Home extends Component {
         this.setState({ selectedFile: event.target.files[0] });     
     }; 
 
+    onNameChange = event => {  
+        this.setState({ assignmentName: event.target.value });     
+    }; 
+
     //not sure about this one either... trying to send the assignment that I set above
     addAssignmentResults=(e)=>{
         e.preventDefault();
+        //OR i could do like I did in setAssignment results and copy the state object and modify some values
         const tSAssignment = {
-            accessToken: localStorage.getItem('accessToken'),
-            assignmentName: this.state.assignment.title,
-            responseUrl: this.state.assignment.materials[0].form.responseUrl,
-            formPictureUrl: this.state.assignment.materials[0].form.thumbnailUrl,
+            accessToken: this.state.assignment.accessToken,
+            //This needs to be input from user
+            assignmentName: this.state.assignmentName,
+            responseUrl: this.state.assignment.responseUrl,
             csv: this.state.selectedFile
             //could add back other info here potentially...
         };
         console.log(tSAssignment);
-        Axios.post('http://localhost:4000/addAssignmentResults', tSAssignment)
+        /* Axios.post('http://localhost:4000/addAssignmentResults', tSAssignment)
         .then(response => {
             //do i need to close the modal here?
           this.props.history.push('/analysis');
         }).catch( error => {
           console.log(error);
-        });
+        }); */
     }
 
     render() {
@@ -170,7 +185,6 @@ class Home extends Component {
                         <Form>
                             <div className="padding">
                                 Step 1: Select a Course
-                                {/* this actually doesn't need to be sent to the backend in a form */}
                                 <select className="form-control" value={this.state.course} onChange={this.listAssignments}>
                                     <option value="" disabled>Please Select a value</option>
                                     {this.state.courses.map((course, index) =>
@@ -181,7 +195,7 @@ class Home extends Component {
                             <div className="padding"> 
                                 Step 2: Choose an Assignment
                                 {/* I  might not want to bind the value here... not sure */}
-                                <select className="form-control" value={this.state.assignment} onChange={this.setAssignmentResults}>
+                                <select className="form-control" value="" onChange={this.setAssignmentResults}>
                                     <option value="" disabled>Please Select an Assignment</option>
                                     {this.state.assignments.map((assignment, index) =>
                                     // TODO: need to figure out how to do it with index... before i had value=index... idk, look into that
@@ -192,6 +206,10 @@ class Home extends Component {
                             <div className="padding">
                                 Step 4: Upload the File Downloaded During Step 3
                                 <input type="file" onChange={this.onFileChange} /> 
+                            </div>
+                            <div className="padding">
+                                Step 5: Name this Assignment
+                                <input onChange={this.onNameChange} value = {this.state.assignmentName} placeholder ="Assignment Name"  /> 
                             </div>
                             
                         </Form>
@@ -217,7 +235,7 @@ class Home extends Component {
                     </Modal.Header>
                     <Modal.Body>
                         <p>Your sheet is located here:</p>
-                        <p>{this.state.assignmentUrl}</p>
+                        <p>{this.state.assignment.responseUrl}</p>
                         <p>Copy the link and paste it into a new tab -- this will open the sheet.</p>
                         <p>Go to File -> Download -> Tab-separated values.</p>
                         <p>Now close this box and proceed to Step 4.</p>
