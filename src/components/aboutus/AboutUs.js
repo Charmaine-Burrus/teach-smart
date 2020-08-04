@@ -17,7 +17,7 @@ const AboutUs = () => {
             
             <h2 className="cover-heading padding">-Our Model-</h2>
             <p className="lead">You already work hard. We give you the tools to work smart.</p>
-            <h5 >Data-informed instruction has never been easier!</h5>
+            <h5 className="thick-text">Data-informed instruction has never been easier!</h5>
             
             <div className="row padding">
                 
@@ -25,7 +25,7 @@ const AboutUs = () => {
                     <div className="card center">
                         <img className="card-img-top" src={graph2}/>
                         <div className="card-body">
-                            <h4 className="card-title">Plan</h4>
+                            <h4 className="card-title thick-text">Plan</h4>
                             <p className="card-text">...</p>
                         </div>
                     </div>
@@ -36,7 +36,7 @@ const AboutUs = () => {
                     <div className="card center">
                         <img className="card-img-top" src={brainstorming}/>
                         <div className="card-body">
-                            <h4 className="card-title">Share</h4>
+                            <h4 className="card-title thick-text">Share</h4>
                             <p className="card-text">...</p>
                         </div>
                     </div>
@@ -47,7 +47,7 @@ const AboutUs = () => {
                     <div className="card center">
                         <img className="card-img-top" src={grad}/>
                         <div className="card-body">
-                            <h4 className="card-title">Succeed</h4>
+                            <h4 className="card-title thick-text">Succeed</h4>
                             <p className="card-text">...</p>
                         </div>
                     </div>

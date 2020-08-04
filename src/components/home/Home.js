@@ -121,23 +121,27 @@ class Home extends Component {
     addAssignmentResults=(e)=>{
         e.preventDefault();
         //OR i could do like I did in setAssignment results and copy the state object and modify some values
+        const formData = new FormData()
+        formData.append("file",this.state.selectedFile)
         const tSAssignment = {
             accessToken: this.state.assignment.accessToken,
             //This needs to be input from user
             assignmentName: this.state.assignmentName,
             responseUrl: this.state.assignment.responseUrl,
-            csv: this.state.selectedFile
+            file: formData
             //could add back other info here potentially...
         };
         console.log(tSAssignment);
-        // WILL NEED TO SEND LOGGED IN USER AS WELL
-        /* Axios.post('http://localhost:4000/addAssignmentResults', tSAssignment)
+        // IT IS BETTER IF I CAN SEND THE TSASSIGNMENT TOO (W/O FORM) -- WILL NEED TO SEND LOGGED IN USER AS WELL
+        Axios.post('http://localhost:8080/addAssignmentResults', formData, {headers: {"Content-Type": "multipart/form-data"}})
         .then(response => {
-            //do i need to close the modal here?
+          console.log(response.data);
+          //TODO: remove this -- it was just a test
+          localStorage.setItem("assignmentFromDatabase", response.data.assignmentName);
           this.props.history.push('/analysis');
         }).catch( error => {
           console.log(error);
-        }); */
+        });
     }
 
     render() {

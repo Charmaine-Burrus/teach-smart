@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 import BarGraph from './charts/BarGraph';
+import {Button, Form} from 'react-bootstrap';
+import style from './analysis.css';
 
 class Analysis extends Component {
     constructor(){
         super();
         this.state = {
+          assignments: [],
+          assignmentSelected : '',
           chartData:{}
         }
       }
 
       componentWillMount(){
          this.getChartData();
+         //getAssessmentsForUser
        }
 
        getChartData(){
@@ -46,13 +51,53 @@ class Analysis extends Component {
 
     render() {
         return (
-            <div>
-                <h3>Analysis Page coming soon</h3>
-                <p>This is where I'll put teacher input</p>
-                <div>
-                    <p>Here I populate results.. this div only appears if assessment is not null</p>
-                    <p>Could have tables... https://react-bootstrap.github.io/components/table/</p>
-                    <BarGraph chartData={this.state.chartData} location="Massachusetts" legendPosition="bottom"/>
+            <div className="analysis">
+                
+                <div className="container-fluid analysis-teacher-input padding">
+                  <h3 className="thick-text-white">Assignment Analysis</h3>
+                  <Form>
+                    <div className="padding">
+                      <select className="form-control" value={this.state.assignmentSelected} onChange={this.handleChange}>
+                      <option value="" disabled>Choose from your Assignments</option>
+                      {/* TODO: get rid of this */}
+                      <option value="">{localStorage.getItem("assignmentFromDatabase")}</option>
+                      {/* {this.state.courses.map((course, index) =>
+                      <option key={index} value={course.id}>{course.name}</option>
+                      )} */}
+                    </select>
+                    </div>
+                    <div className="padding">
+                      <Button variant="primary" onClick={(e) => this.handleSubmit(e)}> Add</Button>
+                    </div>
+                  </Form>
+                </div>
+
+                <div className="container-fluid padding">
+                    <h3 className="padding">Here I populate results.. this div only appears if assessment is not null</h3>
+                    
+                    <div className="row center padding">
+                        <div className="col-md-6 center">
+                          <BarGraph chartData={this.state.chartData} location="Massachusetts" legendPosition="bottom"/>
+                        </div>
+                        <div className="col-md-6 center">
+                          <BarGraph chartData={this.state.chartData} location="Massachusetts" legendPosition="bottom"/>
+                        </div>
+                    </div>
+
+                    <div className="row center padding">
+                        <div className="col-md-6 center">
+                          <BarGraph chartData={this.state.chartData} location="Massachusetts" legendPosition="bottom"/>
+                          <div className="container-fluid analysis-teacher-input">
+                            <h4>Results</h4>
+                            <p>Blah</p>
+                            <p>Blah</p>
+                            <p>Blah</p>
+                            <p>Blah</p>
+                            <p>Blah</p><p>Blah</p>
+                          </div>
+                        </div>
+                    </div>
+                    
                 </div> 
             </div>
         );

@@ -127,9 +127,14 @@ a.card:hover {
 	margin: auto;
 }
 
-.bar-graph {
-  position: relative;
-  width: 50%;
-  height: auto;
-  background-color: black;
+.about-us{
+  /* -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black; */
+  -webkit-text-stroke: 1px black;
+  color: white;
+}
+
+.thick-text {
+  -webkit-text-stroke: 1px black;
+  color: black;
 }

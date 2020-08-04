@@ -1,0 +1,24 @@
+.padding {
+    padding-bottom: .5rem;
+    padding-top: .5rem;
+  }
+
+  .bar-graph {
+    position: relative;
+    width: 90%;
+    height: auto;
+    background-color: black;
+  }
+  
+  .analysis-teacher-input {
+    background-color: #e0c579;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .thick-text-white{
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+  }
