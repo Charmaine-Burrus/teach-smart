@@ -10,7 +10,9 @@ class Analysis extends Component {
         this.state = {
           assignments: [],
           assignmentSelected : '',
-          chartData:{},
+          chartData1:{},
+          chartData2:{},
+          chartData3:{},
           chartReady: false
         }
       }
@@ -37,7 +39,7 @@ class Analysis extends Component {
     getChartData(){
      // Ajax calls here
      this.setState({
-       chartData:{
+       chartData1:{
          labels: ['A', 'B', 'C', 'D', 'F'],
          datasets:[
            {
@@ -60,7 +62,70 @@ class Analysis extends Component {
              ]
            }
          ]
-       }
+       },
+
+       chartData2:{
+        labels: ['1st Hr', '2nd Hr', '4th Hr', '7th Hr', '8th Hr'],
+        datasets:[
+          {
+            label:'Average Score',
+            data:[
+              70,
+              82,
+              78,
+              89,
+              85
+            ],
+            backgroundColor:[
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+              'rgba(153, 102, 255, 0.6)',
+              'rgba(255, 159, 64, 0.6)',
+              'rgba(255, 99, 132, 0.6)'
+            ]
+          }
+        ]
+      },
+
+      chartData3:{
+        labels: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+        datasets:[
+          {
+            label:'Percentage of Scores',
+            data:[
+              71,
+              85,
+              92,
+              63,
+              51, 98, 57, 63, 88, 92, 95, 61, 75, 77, 91, 53, 68, 71, 93, 98
+            ],
+            backgroundColor:[
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+              'rgba(153, 102, 255, 0.6)',
+              'rgba(255, 159, 64, 0.6)',
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+              'rgba(153, 102, 255, 0.6)',
+              'rgba(255, 159, 64, 0.6)',
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+              'rgba(153, 102, 255, 0.6)',
+              'rgba(255, 159, 64, 0.6)',
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(255, 206, 86, 0.6)'
+            ]
+          }
+        ]
+      }
      });
     }
 
@@ -73,23 +138,23 @@ class Analysis extends Component {
         <div>
           <div className="row center padding">
             <div className="col-md-6 center">
-              <PieChart chartData={this.state.chartData} title="Scores by Letter Grade" legendPosition="left"/>
+              <PieChart chartData={this.state.chartData1} title="Scores by Letter Grade" legendPosition="left"/>
             </div>
             <div className="col-md-6 center">
-              <BarGraph chartData={this.state.chartData} title="Average Score by Hour" legendPosition="right"/>
+              <BarGraph chartData={this.state.chartData2} title="Average Score by Hour" legendPosition="right" yAxisMin="50" yAxisMax="100"/>
             </div>
           </div>
 
           <div className="row center padding">
             <div className="col-md-6 center">
-              <BarGraph chartData={this.state.chartData} title="Overall Scores" legendPosition="bottom"/>
+              <BarGraph chartData={this.state.chartData3} title="Overall Scores" legendPosition="bottom"/>
               <div className="container-fluid analysis-teacher-input">
-                <h4>Results</h4>
-                <p>Blah</p>
-                <p>Blah</p>
-                <p>Blah</p>
-                <p>Blah</p>
-                <p>Blah</p><p>Blah</p>
+                <h4>Results:</h4>
+                <p>Highest Scoring Class: 4th Hr</p>
+                <p>Top-Scoring Students: Fatima, Avion, Melissa</p>
+                <p>Average: 79%</p>
+                <p>Highest Score: 98%</p>
+                <p>Lowest Score: 51%</p>
               </div>
             </div>
           </div>

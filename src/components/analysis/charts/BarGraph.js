@@ -15,7 +15,7 @@ class BarGraph extends Component {
 		displayTitle: true,
 		displayLegend: true,
 		legendPosition: 'right',
-		title: 'The Lastest Graph'
+		title: 'The Lastest Graph',
 	}	
 
     render() {
@@ -24,6 +24,15 @@ class BarGraph extends Component {
 				<Bar
 				  data={this.state.chartData}
 				  options={{
+					scales: {
+						yAxes: [{
+							ticks: {
+								// beginAtZero: true
+								min: 50, 
+								max: 100
+							}
+						}]
+					},
 					responsive: true,
 					/* maintainAspectRatio: false, */
 					title: {

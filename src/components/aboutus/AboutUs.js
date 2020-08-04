@@ -26,7 +26,8 @@ const AboutUs = () => {
                         <img className="card-img-top" src={graph2}/>
                         <div className="card-body">
                             <h4 className="card-title thick-text">Plan</h4>
-                            <p className="card-text">Upload assignment data directly from Google. Use our analysis to guide your future instruction.</p>
+                            {/* <p className="card-text">Upload assignment data directly from Google. Use our analysis to guide your future instruction.</p> */}
+                            <p className="card-text">Upload assignment data from Google. Use our analysis to guide your instruction.</p>
                         </div>
                     </div>
                 </div>	
@@ -48,7 +49,8 @@ const AboutUs = () => {
                         <img className="card-img-top" src={grad}/>
                         <div className="card-body">
                             <h4 className="card-title thick-text">Succeed!</h4>
-                            <p className="card-text">Empower all students to improve with each assignment. Lead your team to exceed state standards.</p>
+                            {/* <p className="card-text">Empower all students to improve with each assignment. Lead your team to exceed state standards.</p> */}
+                            <p className="card-text">Empower students to improve with each assignment - exceed state standards.</p>
                         </div>
                     </div>
                 </div>	
