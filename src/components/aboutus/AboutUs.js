@@ -12,21 +12,21 @@ const AboutUs = () => {
 
         <div role="main" className="inner cover">
 
-            <h2 className="cover-heading padding">-Our Mission-</h2>
-            <p className="lead">Design tools that empower teachers to work as smart as possible, propelling their students to success!</p>
+            <h1 className="white-text-black-border top-padding">-Our Mission-</h1>
+            <h4 className="thick-text-white-border">Design tools that empower teachers to work as smart as possible, propelling their students to success!</h4>
             
-            <h2 className="cover-heading padding">-Our Model-</h2>
-            <p className="lead">You already work hard. We give you the tools to work smart.</p>
-            <h5 className="thick-text">Data-informed instruction has never been easier!</h5>
+            <h1 className="white-text-black-border top-padding">-Our Model-</h1>
+            <h4 className="thick-text-white-border">You already work hard. We give you the tools to work smart.</h4>
+            <h4 className="thick-text">Data-informed instruction has never been easier!</h4>
             
-            <div className="row padding">
+            <div className="row full-padding">
                 
                 <div className="col-md-4">
                     <div className="card center">
                         <img className="card-img-top" src={graph2}/>
                         <div className="card-body">
                             <h4 className="card-title thick-text">Plan</h4>
-                            <p className="card-text">...</p>
+                            <p className="card-text">Upload assignment data directly from Google. Use our analysis to guide your future instruction.</p>
                         </div>
                     </div>
                 </div>	
@@ -37,7 +37,7 @@ const AboutUs = () => {
                         <img className="card-img-top" src={brainstorming}/>
                         <div className="card-body">
                             <h4 className="card-title thick-text">Share</h4>
-                            <p className="card-text">...</p>
+                            <p className="card-text">Share results with students, while keeping individual scores anonymous.</p>
                         </div>
                     </div>
                 </div>	
@@ -47,8 +47,8 @@ const AboutUs = () => {
                     <div className="card center">
                         <img className="card-img-top" src={grad}/>
                         <div className="card-body">
-                            <h4 className="card-title thick-text">Succeed</h4>
-                            <p className="card-text">...</p>
+                            <h4 className="card-title thick-text">Succeed!</h4>
+                            <p className="card-text">Empower all students to improve with each assignment. Lead your team to exceed state standards.</p>
                         </div>
                     </div>
                 </div>	

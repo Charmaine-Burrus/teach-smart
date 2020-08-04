@@ -70,6 +70,7 @@ img {
 .mini-logo {
   max-width: 7%;
   height: auto;
+  border-radius: 2px;
 }
 
 .profile-pic {
@@ -77,6 +78,7 @@ img {
   height: auto;
   padding-left: 1rem;
   padding-right: 1rem;
+  border-radius: 18px;
 }
 
 .navbar-right {
@@ -127,14 +129,17 @@ a.card:hover {
 	margin: auto;
 }
 
-.about-us{
-  /* -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: black; */
+.thick-text {
+  -webkit-text-stroke: 1px black;
+  color: black;
+}
+
+.white-text-black-border {
   -webkit-text-stroke: 1px black;
   color: white;
 }
 
-.thick-text {
-  -webkit-text-stroke: 1px black;
+.thick-text-white-border {
+  -webkit-text-stroke: .1px white;
   color: black;
 }

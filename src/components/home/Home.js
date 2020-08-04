@@ -151,25 +151,29 @@ class Home extends Component {
                     <div className="row center">
                         <div className="col-md-3 center"></div>
                     
-                        <a className="col-md-3 center" href="#" onClick={(e) => this.listCourses(e)}>
-                            <div className="card">
-                                <img src={assessment} className="card-img-top card-pics" alt="Assessment"/>
-                                <div className="card-body">
-                                    <h5 className="card-title">Add Assessment</h5>
-                                    <p className="card-text">Import from Google Forms.</p>
+                        <div className="col-md-3 center">
+                            <a href="#" onClick={(e) => this.listCourses(e)}>
+                                <div className="card center">
+                                    <img src={assessment} className="card-img-top" alt="Assessment"/>
+                                    <div className="card-body">
+                                        <h5 className="card-title">Add Assessment</h5>
+                                        <p className="card-text">Import from Google Forms.</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                         
-                        <a className="col-md-3 center" href="#" onClick={()=>{this.navigateToAnalysis()}}>
-                            <div className="card">
-                                <img src={graph3} className="card-img-top card-pics" alt="Growth"/>
-                                <div className="card-body">
-                                    <h5 className="card-title">Analyze Assessment</h5>
-                                    <p className="card-text">View assessment data analysis.</p>
+                        <div className="col-md-3 center">
+                            <a href="#" onClick={()=>{this.navigateToAnalysis()}}>
+                                <div className="card center">
+                                    <img src={graph3} className="card-img-top" alt="Growth"/>
+                                    <div className="card-body">
+                                        <h5 className="card-title">Analyze Assessment</h5>
+                                        <p className="card-text">View assessment data analysis.</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>  
+                            </a>  
+                        </div> 
 
                         <div className="col-md-3 center"></div>  
 
