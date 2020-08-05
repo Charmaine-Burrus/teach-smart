@@ -11,11 +11,16 @@ body {
   /* background-color: #64b9e3; */
   background-color: #abddf5;
   /* background-image: url('./images/wallpaper.jpg'); */
-  background : url('./images/wallpaper.jpg');
+  /* background : url('./images/wallpaper.jpg'); */
+  background : url('./images/wallpaperT.png');
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+}
+
+#root {
+
 }
 
 html {
@@ -43,22 +48,31 @@ img {
 
 .navbar-dark {
   background-color: #3372b0;
+  /* background-color: #f59342; */
+  /* background-color:#deb857; */
+  /* border: 3px solid #3372b0; */
+  /* background-color: white; */
+  color: black;
+  height: 85px;
 }
 
 .corral {
   margin: 0 auto;
   width: 460px;
   position: relative;
-  background-color: #3372b0;
+  /* background-color: #3372b0; */
   border-radius: 15px;
-  color: white;
+  /* color: white; */
+  color: black;
+  background-color: white;
 }
 
 .contentContainerBordered {
-  margin: 120px auto 0;
+  margin: 80px auto 0;
   padding: 42px 42px 36px;
   border: 1px solid #eaeced;
   border-radius: 15px;
+  border: 2px solid #3372b0;
   overflow: hidden;
 }
 

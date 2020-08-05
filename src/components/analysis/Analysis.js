@@ -150,7 +150,7 @@ class Analysis extends Component {
               <BarGraph chartData={this.state.chartData3} title="Overall Scores" legendPosition="bottom"/>
               <div className="container-fluid analysis-teacher-input">
                 <h4>Results:</h4>
-                <p>Highest Scoring Class: 4th Hr</p>
+                <p>Highest Scoring Class: 7th Hr</p>
                 <p>Top-Scoring Students: Fatima, Avion, Melissa</p>
                 <p>Average: 79%</p>
                 <p>Highest Score: 98%</p>

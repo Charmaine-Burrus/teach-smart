@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { GoogleLogout } from 'react-google-login';
-import TeachSmart from '../../../images/TeachSmart.jpg';
+import TeachSmartLogoWhite from '../../../images/TeachSmartLogoWhite.png';
 
 class LogoutGoogle extends Component {
 
@@ -22,7 +22,7 @@ class LogoutGoogle extends Component {
                 </GoogleLogout>
                 <img src={localStorage.getItem("profilePic")} className="profile-pic" alt="profile-pic"/>
                 {/* <img src={JSON.parse(localStorage.getItem("loggedInUser"))} className="profile-pic"/> */}
-                <a href="/"><img src={TeachSmart} className="mini-logo" alt="TeachSmart"/></a>
+                <a href="/"><img src={TeachSmartLogoWhite} className="mini-logo" alt="TeachSmart"/></a>
             </div>
         );
     }

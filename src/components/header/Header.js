@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import LogoutGoogle from './googlelogout/LogoutGoogle';
-import TeachSmart from '../../images/TeachSmart.jpg';
+import TeachSmartLogoWhite from '../../images/TeachSmartLogoWhite.png';
 import LoginGoogle from '../signup/googlelogin/LoginGoogle';
 
 class Header extends Component {
@@ -15,7 +15,7 @@ class Header extends Component {
         );
         
         let signInSignOut = (
-            <a className="navbar-brand" href="/"><img src={TeachSmart} className="mini-logo"/></a>
+            <a className="navbar-brand" href="/"><img src={TeachSmartLogoWhite} className="mini-logo"/></a>
         )
 
         if(localStorage.getItem("loggedInUser")) {
@@ -27,7 +27,7 @@ class Header extends Component {
                 //TO DO: this probably won't look right.. i need to figure out how to get rid of div but still have a "parent element" OR do this all w/ separate components instead and pass props
                 <div>
                     {/* <li className="nav-item active">
-                        <a className="navbar-brand" href="/"><img src={TeachSmart} className="mini-logo"/></a>
+                        <a className="navbar-brand" href="/"><img src={TeachSmartLogoWhite} className="mini-logo"/></a>
                     </li> */}
                     <li className="nav-item active">
                         <Link className="nav-link" to="/about-us">About Us <span className="sr-only">(current)</span></Link>
