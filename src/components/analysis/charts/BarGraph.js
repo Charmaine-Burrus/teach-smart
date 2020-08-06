@@ -28,7 +28,7 @@ class BarGraph extends Component {
 						yAxes: [{
 							ticks: {
 								// beginAtZero: true
-								min: 50, 
+								min: 30, 
 								max: 100
 							}
 						}]

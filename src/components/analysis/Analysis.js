@@ -3,6 +3,7 @@ import BarGraph from './charts/BarGraph';
 import {Button, Form} from 'react-bootstrap';
 import style from './analysis.css';
 import PieChart from './charts/PieChart';
+import Axios from 'axios';
 
 class Analysis extends Component {
     constructor(){
@@ -17,8 +18,18 @@ class Analysis extends Component {
         }
       }
 
-    componentWillMount(){
-       //getAssignmentsForUser and set states.assignments
+    componentDidMount(){
+      Axios.get('http://localhost:8080/findAllUsers')
+      .then(response => {
+        console.log(response.data.length, "  ", response.data[0]);
+        this.setState ({
+          assignments: response.data
+        });
+        console.log(response.data);
+      }).catch( error => {
+        console.log(error);
+      });
+       
     }
 
     handleChange = (event) => {
@@ -43,13 +54,13 @@ class Analysis extends Component {
          labels: ['A', 'B', 'C', 'D', 'F'],
          datasets:[
            {
-             label:'Percentage of Scores',
+             label:'',
              data:[
-               15,
-               30,
-               25,
-               20,
-               10
+               21,
+               7,
+               21,
+               0,
+               50
              ],
              backgroundColor:[
                'rgba(255, 99, 132, 0.6)',
@@ -70,11 +81,11 @@ class Analysis extends Component {
           {
             label:'Average Score',
             data:[
-              70,
-              82,
-              78,
-              89,
-              85
+              41,
+              65,
+              73,
+              88,
+              53
             ],
             backgroundColor:[
               'rgba(255, 99, 132, 0.6)',
@@ -90,25 +101,18 @@ class Analysis extends Component {
       },
 
       chartData3:{
-        labels: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+        labels: ['', '', '', '', '', '', '', '', '', '', '', '', ''],
         datasets:[
           {
-            label:'Percentage of Scores',
+            label:'Score (as Percentage)',
             data:[
-              71,
-              85,
-              92,
-              63,
-              51, 98, 57, 63, 88, 92, 95, 61, 75, 77, 91, 53, 68, 71, 93, 98
+              41,
+              41,
+              47,
+              47,
+              47, 62, 71, 76, 76, 82, 94, 94, 94
             ],
             backgroundColor:[
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
-              'rgba(153, 102, 255, 0.6)',
-              'rgba(255, 159, 64, 0.6)',
-              'rgba(255, 99, 132, 0.6)',
               'rgba(54, 162, 235, 0.6)',
               'rgba(255, 206, 86, 0.6)',
               'rgba(75, 192, 192, 0.6)',
@@ -138,23 +142,24 @@ class Analysis extends Component {
         <div>
           <div className="row center padding">
             <div className="col-md-6 center">
-              <PieChart chartData={this.state.chartData1} title="Scores by Letter Grade" legendPosition="left"/>
+              <PieChart chartData={this.state.chartData1} title="Percent of Students Who Earned Each Letter Grade" legendPosition="left"/>
             </div>
             <div className="col-md-6 center">
-              <BarGraph chartData={this.state.chartData2} title="Average Score by Hour" legendPosition="right" yAxisMin="50" yAxisMax="100"/>
+              <BarGraph chartData={this.state.chartData2} title="Average Percentage by Hour" legendPosition="right" yAxisMin="50" yAxisMax="100"/>
             </div>
           </div>
 
           <div className="row center padding">
             <div className="col-md-6 center">
-              <BarGraph chartData={this.state.chartData3} title="Overall Scores" legendPosition="bottom"/>
+              <BarGraph chartData={this.state.chartData3} title="Individual Scores" legendPosition="bottom"/>
               <div className="container-fluid analysis-teacher-input">
                 <h4>Results:</h4>
-                <p>Highest Scoring Class: 7th Hr</p>
+                <p>Total Points: 17</p>
+                <p>Average Score: 11.29</p>
+                <p>Lowest Score: 7.0</p>
+                <p>Highest Score: 16.0</p>
                 <p>Top-Scoring Students: Fatima, Avion, Melissa</p>
-                <p>Average: 79%</p>
-                <p>Highest Score: 98%</p>
-                <p>Lowest Score: 51%</p>
+                <p>Top-Scoring Students: 7th Hr</p>
               </div>
             </div>
           </div>
@@ -176,10 +181,10 @@ class Analysis extends Component {
                       <select className="form-control" value={this.state.assignmentSelected} onChange={this.handleChange}>
                       <option value="" disabled>Choose from your Assignments</option>
                       {/* TODO: get rid of this */}
-                      <option value={localStorage.getItem("assignmentFromDatabase")}>{localStorage.getItem("assignmentFromDatabase")}</option>
-                      {/* {this.state.courses.map((course, index) =>
-                      <option key={index} value={course.id}>{course.name}</option>
-                      )} */}
+                      {/* <option value={localStorage.getItem("assignmentFromDatabase")}>{localStorage.getItem("assignmentFromDatabase")}</option> */}
+                      {this.state.assignments.map((assignment, index) =>
+                      <option key={index} value={assignment.id}>{assignment.name}</option>
+                      )}
                     </select>
                     </div>
                     <div className="padding">
