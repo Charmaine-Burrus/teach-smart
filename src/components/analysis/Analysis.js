@@ -159,7 +159,7 @@ class Analysis extends Component {
                 <p>Lowest Score: 7.0</p>
                 <p>Highest Score: 16.0</p>
                 <p>Top-Scoring Students: Fatima, Avion, Melissa</p>
-                <p>Top-Scoring Students: 7th Hr</p>
+                <p>Top-Scoring Class: 7th Hr</p>
               </div>
             </div>
           </div>
