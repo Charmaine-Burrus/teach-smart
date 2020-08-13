@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import LogoutGoogle from './googlelogout/LogoutGoogle';
 import TeachSmartLogoWhite from '../../images/TeachSmartLogoWhite.png';
-import LoginGoogle from '../signup/googlelogin/LoginGoogle';
 
 class Header extends Component {
 

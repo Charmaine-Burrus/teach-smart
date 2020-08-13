@@ -6,9 +6,6 @@
 
 .card, 
 .card:hover {
-    /* border: 3px solid #3372b0; */
-    /* max-width: 75%;
-    height: auto; */
     height: 100%;
     width: 75%;
     color: black;
@@ -20,9 +17,6 @@
 }
 
 .card-img-top {
-  /* max-width: 100%;
-  height: auto;
-  object-fit: cover; */
   height: 70%;
 }
 

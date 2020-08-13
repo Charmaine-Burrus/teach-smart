@@ -1,7 +1,7 @@
 .top-padding {
   padding-top: 2rem;
-	/* padding-bottom: .25rem; */
 }
+
 .full-padding {
   padding-top: 2rem;
 	padding-bottom: 2rem;
@@ -9,17 +9,11 @@
 
 .card, 
 .card:hover {
-    /* border: 3px solid #3372b0; */
-    /* max-width: 75%;
-    height: auto; */
     height: 100%;
     width: 75%;
     background-color: white;
 }
   
 .card-img-top {
-  /* width: 100%; */
-  /* height: 40vh; */
   height: 65%;
-  /* object-fit: cover; */
 }

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
-import growth from '../../images/growth.jpg';
 import assessment from '../../images/assessment.jpg';
 import graph3 from '../../images/graph3.jpg';
 import Axios from 'axios';
-import style from './home.css'
+import './home.css'
 import {Button, Form, Modal} from 'react-bootstrap';
 
 class Home extends Component {
