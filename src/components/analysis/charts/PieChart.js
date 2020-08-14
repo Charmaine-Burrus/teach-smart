@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Bar, Line, Pie} from 'react-chartjs-2';
+import {Pie} from 'react-chartjs-2';
 
 class PieChart extends Component {
 
@@ -15,7 +15,7 @@ class PieChart extends Component {
 		displayTitle: true,
 		displayLegend: true,
 		legendPosition: 'right',
-		title: 'The Lastest Graph'
+		title: ''
 	}	
 
     render() {
@@ -25,7 +25,6 @@ class PieChart extends Component {
 				  data={this.state.chartData}
 				  options={{
 					responsive: true,
-					/* maintainAspectRatio: false, */
 					title: {
 						display:this.props.displayTitle,
 						text: this.props.title,

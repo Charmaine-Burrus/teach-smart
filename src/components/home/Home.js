@@ -135,8 +135,6 @@ class Home extends Component {
         Axios.post('http://localhost:8080/addAssignmentResults', formData, {headers: {"Content-Type": "multipart/form-data"}})
         .then(response => {
           console.log(response.data);
-          //TODO: remove this -- it was just a test
-          localStorage.setItem("assignmentFromDatabase", response.data.assignmentName);
           this.props.history.push('/analysis');
         }).catch( error => {
           console.log(error);

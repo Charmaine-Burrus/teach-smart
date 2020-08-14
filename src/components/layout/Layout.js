@@ -21,6 +21,7 @@ class Layout extends Component {
                 <Route component={Signup} path="/sign-up" {...this.props}/>
                 {/* TODO: need to remove this */}
                 <Route component={Analysis} path="/analysis" exact {...this.props}/>
+                <Route component={Home} path="/home" {...this.props}/>
             </div>
         );
 

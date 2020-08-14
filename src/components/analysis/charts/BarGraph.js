@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Bar, Line, Pie} from 'react-chartjs-2';
+import {Bar} from 'react-chartjs-2';
 
 class BarGraph extends Component {
 
@@ -10,12 +10,11 @@ class BarGraph extends Component {
 		}
     }
     
-    //setting default values for props (they can still be passed in & override these)
 	static defaultProps = {
 		displayTitle: true,
 		displayLegend: true,
 		legendPosition: 'right',
-		title: 'The Lastest Graph',
+		title: '',
 	}	
 
     render() {
@@ -27,14 +26,12 @@ class BarGraph extends Component {
 					scales: {
 						yAxes: [{
 							ticks: {
-								// beginAtZero: true
 								min: 30, 
 								max: 100
 							}
 						}]
 					},
 					responsive: true,
-					/* maintainAspectRatio: false, */
 					title: {
 						display:this.props.displayTitle,
 						text: this.props.title,

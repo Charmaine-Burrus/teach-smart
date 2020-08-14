@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BarGraph from './charts/BarGraph';
 import {Button, Form} from 'react-bootstrap';
-import style from './analysis.css';
+import './analysis.css';
 import PieChart from './charts/PieChart';
 import Axios from 'axios';
 
@@ -19,7 +19,7 @@ class Analysis extends Component {
       }
 
     componentDidMount(){
-      Axios.get('http://localhost:8080/findAllUsers')
+      Axios.get('http://localhost:8080/findAllAssignments')
       .then(response => {
         console.log(response.data.length, "  ", response.data[0]);
         this.setState ({
@@ -40,15 +40,14 @@ class Analysis extends Component {
 
     handleSubmit = (e) => {
       e.preventDefault();
-      //call backend to get chartData for assessment w/ this name
-      //can't get chartData until they select an assessment 
+      //TODO: call backend to get chartData for assessment w/ this id
+      //TODO: after response do something similar to getChartData to set chartData1, chartData2, and chartData3 according to ResponseBody
       this.getChartData();
-      //after response.. populate chartReady to render chartBelow
       this.setState({chartReady: true});
     }
 
+    //this is hard-coded for now... will be replaced with API call (see above)
     getChartData(){
-     // Ajax calls here
      this.setState({
        chartData1:{
          labels: ['A', 'B', 'C', 'D', 'F'],
@@ -153,6 +152,7 @@ class Analysis extends Component {
             <div className="col-md-6 center">
               <BarGraph chartData={this.state.chartData3} title="Individual Scores" legendPosition="bottom"/>
               <div className="container-fluid analysis-teacher-input">
+                {/* TODO: this is also hard-coded and needs to be replaced with API call */}
                 <h4>Results:</h4>
                 <p>Total Points: 17</p>
                 <p>Average Score: 11.29</p>
@@ -167,7 +167,7 @@ class Analysis extends Component {
       } else {
         results = 
         <div>
-          <h3 className="padding">Assignment Results:</h3>
+          <h3 className="padding text-center">Assignment Results:</h3>
         </div>;
       }
 
@@ -179,16 +179,14 @@ class Analysis extends Component {
                   <Form>
                     <div className="padding">
                       <select className="form-control" value={this.state.assignmentSelected} onChange={this.handleChange}>
-                      <option value="" disabled>Choose from your Assignments</option>
-                      {/* TODO: get rid of this */}
-                      {/* <option value={localStorage.getItem("assignmentFromDatabase")}>{localStorage.getItem("assignmentFromDatabase")}</option> */}
-                      {this.state.assignments.map((assignment, index) =>
-                      <option key={index} value={assignment.id}>{assignment.name}</option>
-                      )}
-                    </select>
+                        <option value="" disabled>Choose from your Assignments</option>
+                        {this.state.assignments.map((assignment, index) =>
+                        <option key={index} value={assignment.id}>{assignment.name}</option>
+                        )}
+                      </select>
                     </div>
                     <div className="padding">
-                      <Button variant="primary" onClick={(e) => this.handleSubmit(e)}> Add</Button>
+                      <Button variant="primary" onClick={(e) => this.handleSubmit(e)}>Add</Button>
                     </div>
                   </Form>
                 </div>
