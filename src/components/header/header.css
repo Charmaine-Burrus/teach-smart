@@ -1,0 +1,23 @@
+.navbar-dark {
+  background-color: #3372b0;
+  color: black;
+  height: 85px;
+}
+  
+.navbar-right {
+  text-align: right;
+}
+
+.mini-logo {
+  max-width: 6%;
+  height: auto;
+  border-radius: 2px;
+}
+  
+.profile-pic {
+  max-width: 6.75%;
+  height: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 18px;
+}

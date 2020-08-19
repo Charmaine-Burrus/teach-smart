@@ -16,7 +16,6 @@ class LoginGoogle extends Component {
       const accessToken = response.wc.access_token;
       localStorage.setItem("accessToken", accessToken);
       console.log(id_token)
-      //TO DO: how do I send the id_token in the header?
       const data = {googleTokenId: id_token};
       console.log(data);
       Axios.post('http://localhost:4000/login', data)
@@ -43,7 +42,6 @@ class LoginGoogle extends Component {
                     isSignedIn={false}
                     onFailure={this.responseGoogle}
                     prompt='consent'
-                    // responseType='id_token token permission'
                     approvalPrompt="force"
                     cookiePolicy={'single_host_origin'}
                     scope={this.SCOPES}
