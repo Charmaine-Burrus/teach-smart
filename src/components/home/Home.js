@@ -18,10 +18,9 @@ class Home extends Component {
             assignment : {
                 accessToken: '',
                 responseUrl: '',
-                //TODO: choose to have either this or the selected file field below
-                csv: ''
             },
             showModal2: false,
+            //might be better to include this as a field withing assignment
             selectedFile: null,
             assignmentName: ''
         }
@@ -48,7 +47,6 @@ class Home extends Component {
         Axios.post('http://localhost:4000/listCourses', { googleTokenId: localStorage.getItem('accessToken')} )
         .then(response => {
             console.log(response.data);
-            //I've received an array of courses
             this.setState({courses: response.data})
             this.handleModal();
         }).catch( error => {
@@ -79,7 +77,6 @@ class Home extends Component {
                         return false;
                     })
                 console.log("Filtered assignments ::> ", assignments)
-                //I've received an array of assignments
                 this.setState({assignments: assignments})
             }else{
                 // this.setState({assignments: []})
@@ -89,7 +86,6 @@ class Home extends Component {
         });
     }
 
-    //not sure how to write this... I want to update state.assignment to assignments(index)... I've saved that as the value of the option
     setAssignmentResults = (event) => {
         const tempAssignment = {...this.state.assignment};
         tempAssignment["accessToken"] = localStorage.getItem('accessToken');
@@ -100,11 +96,6 @@ class Home extends Component {
                 assignment : tempAssignment
             }
         );
-        /* Still not positive if it's being set above... if not, could use this
-        this.state.assignment["accessToken"] = localStorage.getItem('accessToken');
-        this.state.assignment["assignmentName"] = event.target.name;
-        this.state.assignment["responseUrl"] = event.target.value;
-        console.log(this.state.assignment); */
         this.handleModal2();
     }
 
@@ -144,7 +135,7 @@ class Home extends Component {
     render() {
         return (
             <div className="home">
-                <div className="container-fluid padding home-container">
+                <div className="container-fluid light-padding home-container">
                     <div className="row center">
                         <div className="col-md-3 center"></div>
                     
@@ -189,7 +180,7 @@ class Home extends Component {
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
-                            <div className="padding">
+                            <div className="light-padding">
                                 Step 1: Select a Course
                                 <select className="form-control" value={this.state.course} onChange={this.listAssignments}>
                                     <option value="" disabled>Please Select a value</option>
@@ -198,7 +189,7 @@ class Home extends Component {
                                     )}
                                 </select>
                             </div>
-                            <div className="padding"> 
+                            <div className="light-padding"> 
                                 Step 2: Choose an Assignment
                                 {/* I  might not want to bind the value here... not sure */}
                                 <select className="form-control" value="" onChange={this.setAssignmentResults}>
@@ -209,11 +200,11 @@ class Home extends Component {
                                     )}
                                 </select>
                             </div>  
-                            <div className="padding">
+                            <div className="light-padding">
                                 Step 4: Upload the File Downloaded During Step 3
                                 <input type="file" onChange={this.onFileChange} /> 
                             </div>
-                            <div className="padding">
+                            <div className="light-padding">
                                 Step 5: Name this Assignment
                                 <input onChange={this.onNameChange} value = {this.state.assignmentName} placeholder ="Assignment Name"  /> 
                             </div>

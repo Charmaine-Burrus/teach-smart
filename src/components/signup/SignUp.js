@@ -11,7 +11,6 @@ class SignUp extends Component {
                     <div id="content" className="contentContainerBordered">
                         <h3>Welcome to</h3>
                         <img src={TeachSmartLogo} className="logo" alt="TeachSmart"/>
-                        {/* <h5>Data-informed instruction has never been easier!</h5> */}
                         <hr/>
                         <LoginGoogle {...this.props}/>
                         <p>For Both New and Returning Users</p>

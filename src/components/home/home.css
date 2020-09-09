@@ -1,11 +1,4 @@
-.padding {
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-}
-
-
-.card, 
-.card:hover {
+.card {
     height: 100%;
     width: 75%;
     color: black;
